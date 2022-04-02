@@ -50,7 +50,7 @@ public class EmpleadoServices {
     }
 
     @Transactional(rollbackFor = {Exception.class})
-    public Boolean actualizarEmpleado(Integer dpiEmpleado, ActualizarEmpleadoDto dto) {
+    public Boolean actualizarEmpleado(String dpiEmpleado, ActualizarEmpleadoDto dto) {
         log.debug("Consultando empleado");
         final EmpleadoModel empleados = empleadoRepository.findById(dpiEmpleado).orElse(null);
         if (empleados != null) {

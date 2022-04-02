@@ -11,6 +11,6 @@ import org.springframework.data.repository.CrudRepository;
  *
  * @author denis
  */
-public interface EmpleadoRepository extends CrudRepository<EmpleadoModel, Integer> {
+public interface EmpleadoRepository extends CrudRepository<EmpleadoModel, String> {
     
 }

@@ -45,7 +45,7 @@ public class EmpleadosController {
     }
 
     @PutMapping(value = "/empleados/actualizar/{dpiEmpleado}")
-    public Boolean actualizarEmpleado(@Valid @RequestParam Integer dpiEmpleado, @RequestBody ActualizarEmpleadoDto dto) {
+    public Boolean actualizarEmpleado(@Valid @RequestParam String dpiEmpleado, @RequestBody ActualizarEmpleadoDto dto) {
         log.info("Actulizando un empleado");
         try {
             return empleadoServices.actualizarEmpleado(dpiEmpleado, dto);
