@@ -45,7 +45,6 @@ public class EmpleadoModel implements java.io.Serializable{
     }
 
     @Id
-    @GeneratedValue(strategy = IDENTITY)
     @Column(name = "dpi", unique = true, nullable = false)
     public Integer getDpiEmpleado() {
         return dpiEmpleado;
