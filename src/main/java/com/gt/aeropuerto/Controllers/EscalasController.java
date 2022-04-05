@@ -5,9 +5,12 @@
 package com.gt.aeropuerto.Controllers;
 
 import com.gt.aeropuerto.Dtos.ActualizarAerolineaDto;
+import com.gt.aeropuerto.Dtos.EscalasDto;
 import com.gt.aeropuerto.models.AerolineasModel;
 import com.gt.aeropuerto.projections.AerolineasProjection;
+import com.gt.aeropuerto.projections.EscalasProjection;
 import com.gt.aeropuerto.services.AerolineaServices;
+import com.gt.aeropuerto.services.EscalaServices;
 import java.util.List;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -23,46 +26,46 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author denis
+ * @author JairoJS
  */
 @RestController
 @Slf4j
-public class AerolineasController {
+public class EscalasController {
 
-    final static Logger LOG = LoggerFactory.getLogger(AerolineasController.class);
+    final static Logger LOG = LoggerFactory.getLogger(EscalasController.class);
 
     @Autowired
-    AerolineaServices aerolineaServices;
+    EscalaServices escalaServices;
 
-    @PostMapping(value = "/aerolineas/crear")
-    public Boolean crearAerolinea(@Valid @RequestBody AerolineasModel aerolinea) {
+    @PostMapping(value = "/escala/crear")
+    public Boolean crearEscala(@Valid @RequestBody EscalasDto escala) {
         log.info("Creando una aerolinea");
         try {
-            return aerolineaServices.crearAerolinea(aerolinea);
+            return escalaServices.crearEscala(escala);
         } catch (Exception e) {
             LOG.error("Error: " + e);
             return false;
         }
     }
 
-    @PutMapping(value = "/aerolineas/actualizar/{idAerolinea}")
-    public Boolean actualizarAerolinea(@Valid @RequestParam Integer idAerolinea, @RequestBody ActualizarAerolineaDto dto) {
+    @PutMapping(value = "/escala/actualizar/{idEscala}")
+    public Boolean actualizarEscala(@Valid @RequestParam Integer idEscala, @RequestBody EscalasDto dto) {
         log.info("Actulizando una aerolinea");
         try {
-            return aerolineaServices.actualizarAerolinea(idAerolinea, dto);
+            return escalaServices.actualizarEscala(idEscala, dto);
         } catch (Exception e) {
             LOG.error("Error: " + e);
             return false;
         }
     }
 
-    @GetMapping(value = "/aerolinea/obtener/todas")
-    public List<AerolineasProjection> obtenerAllAerolineas() {
-        return aerolineaServices.obtnerAllAerolinea();
+     @GetMapping(value = "/escalas/obtener/todas")
+    public List<EscalasProjection> obtenerAllEscalas() {
+        return escalaServices.obtnerAllAerolinea();
     }
 
-    @GetMapping(value = "/aerolinea/obtener/{idAerolinea}")
-    public AerolineasProjection obtenerAllAerolineas(@Valid @RequestParam Integer isAerolinea) {
-        return aerolineaServices.obtnerAerolineaById(isAerolinea);
+    @GetMapping(value = "/escalas/obtener/{idEscalas}")
+    public EscalasProjection obtenerAllAerolineas(@Valid @RequestParam Integer idEscalas) {
+        return escalaServices.obtnerAerolineaById(idEscalas);
     }
 }
