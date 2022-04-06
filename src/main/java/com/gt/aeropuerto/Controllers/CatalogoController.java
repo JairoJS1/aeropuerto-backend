@@ -83,8 +83,7 @@ public class CatalogoController {
     /*
     *Metodos para la tabla CatDato
      */
-    
-     @PostMapping(value = "/catDato/crear")
+    @PostMapping(value = "/catDato/crear")
     public CatDatoModel crearDatoCatalogo(@RequestBody CatDatoDto catalogo) {
         log.info("Crea un catalogo de estado");
 

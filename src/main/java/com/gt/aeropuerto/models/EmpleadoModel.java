@@ -19,7 +19,7 @@ import lombok.Builder;
 @Table(name = "empleados", schema = "public")
 public class EmpleadoModel implements java.io.Serializable{
     
-    private Integer dpiEmpleado;
+    private String dpiEmpleado;
     private String nombreEmpleado;
     private String apellidoEmpleado;
     private Date fechaNacimiento;
@@ -32,7 +32,7 @@ public class EmpleadoModel implements java.io.Serializable{
     public EmpleadoModel() {
     }
 
-    public EmpleadoModel(Integer dpiEmpleado, String nombreEmpleado, String apellidoEmpleado, Date fechaNacimiento, Integer telefonoEmpleado, String correoEmpleado, Integer departamentoEmpleado, Integer estadoEmpleado, String numeroVuelo) {
+    public EmpleadoModel(String dpiEmpleado, String nombreEmpleado, String apellidoEmpleado, Date fechaNacimiento, Integer telefonoEmpleado, String correoEmpleado, Integer departamentoEmpleado, Integer estadoEmpleado, String numeroVuelo) {
         this.dpiEmpleado = dpiEmpleado;
         this.nombreEmpleado = nombreEmpleado;
         this.apellidoEmpleado = apellidoEmpleado;
@@ -46,11 +46,11 @@ public class EmpleadoModel implements java.io.Serializable{
 
     @Id
     @Column(name = "dpi", unique = true, nullable = false)
-    public Integer getDpiEmpleado() {
+    public String getDpiEmpleado() {
         return dpiEmpleado;
     }
 
-    public void setDpiEmpleado(Integer dpiEmpleado) {
+    public void setDpiEmpleado(String dpiEmpleado) {
         this.dpiEmpleado = dpiEmpleado;
     }
 

@@ -4,7 +4,6 @@
  */
 package com.gt.aeropuerto.Controllers;
 
-import static com.gt.aeropuerto.Controllers.CatalogoController.LOG;
 import com.gt.aeropuerto.Dtos.ActualizarAvionDto;
 import com.gt.aeropuerto.models.AvionesModel;
 import com.gt.aeropuerto.projections.AvionesProjections;
@@ -56,14 +55,14 @@ public class AvionesController {
             return false;
         }
     }
-    
+
     @GetMapping(value = "/aviones/obtener/todos")
-    public List<AvionesProjections> obtenerAllAviones(){
+    public List<AvionesProjections> obtenerAllAviones() {
         return avionesServices.obtnerAllAviones();
     }
-    
+
     @GetMapping(value = "/aviones/obtener/id/{idAvion}")
-    public AvionesProjections obtenerAllAviones(@Valid @RequestParam String idAvion){
+    public AvionesProjections obtenerAllAviones(@Valid @RequestParam String idAvion) {
         return avionesServices.obtnerAvionesById(idAvion);
     }
 }

@@ -4,7 +4,6 @@
  */
 package com.gt.aeropuerto.services;
 
-import com.gt.aeropuerto.Dtos.ActualizarAerolineaDto;
 import com.gt.aeropuerto.Dtos.ActualizarEmpleadoDto;
 import com.gt.aeropuerto.models.EmpleadoModel;
 import com.gt.aeropuerto.repositories.EmpleadoRepository;
@@ -50,7 +49,7 @@ public class EmpleadoServices {
     }
 
     @Transactional(rollbackFor = {Exception.class})
-    public Boolean actualizarEmpleado(Integer dpiEmpleado, ActualizarEmpleadoDto dto) {
+    public Boolean actualizarEmpleado(String dpiEmpleado, ActualizarEmpleadoDto dto) {
         log.debug("Consultando empleado");
         final EmpleadoModel empleados = empleadoRepository.findById(dpiEmpleado).orElse(null);
         if (empleados != null) {

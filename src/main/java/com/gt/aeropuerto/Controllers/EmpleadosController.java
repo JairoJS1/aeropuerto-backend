@@ -4,11 +4,8 @@
  */
 package com.gt.aeropuerto.Controllers;
 
-import com.gt.aeropuerto.Dtos.ActualizarAerolineaDto;
 import com.gt.aeropuerto.Dtos.ActualizarEmpleadoDto;
-import com.gt.aeropuerto.models.AerolineasModel;
 import com.gt.aeropuerto.models.EmpleadoModel;
-import com.gt.aeropuerto.services.AerolineaServices;
 import com.gt.aeropuerto.services.EmpleadoServices;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -28,12 +25,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Slf4j
 public class EmpleadosController {
-      final static Logger LOG = LoggerFactory.getLogger(EmpleadosController.class);
-      
-      @Autowired
-      EmpleadoServices empleadoServices;
-      
-       @PostMapping(value = "/empleados/crear")
+
+    final static Logger LOG = LoggerFactory.getLogger(EmpleadosController.class);
+
+    @Autowired
+    EmpleadoServices empleadoServices;
+
+    @PostMapping(value = "/empleados/crear")
     public Boolean crearEmpleado(@Valid @RequestBody EmpleadoModel empleado) {
         log.info("Creando un empledo");
         try {
@@ -45,7 +43,7 @@ public class EmpleadosController {
     }
 
     @PutMapping(value = "/empleados/actualizar/{dpiEmpleado}")
-    public Boolean actualizarEmpleado(@Valid @RequestParam Integer dpiEmpleado, @RequestBody ActualizarEmpleadoDto dto) {
+    public Boolean actualizarEmpleado(@Valid @RequestParam String dpiEmpleado, @RequestBody ActualizarEmpleadoDto dto) {
         log.info("Actulizando un empleado");
         try {
             return empleadoServices.actualizarEmpleado(dpiEmpleado, dto);

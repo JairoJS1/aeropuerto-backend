@@ -4,13 +4,13 @@
  */
 package com.gt.aeropuerto.repositories;
 
-import com.gt.aeropuerto.models.EmpleadoModel;
+import com.gt.aeropuerto.models.BoletoModel;
 import org.springframework.data.repository.CrudRepository;
 
 /**
  *
- * @author denis
+ * @author JairoJS
  */
-public interface EmpleadoRepository extends CrudRepository<EmpleadoModel, String> {
+public interface BoletoRepository extends CrudRepository<BoletoModel, String>{
     
 }
