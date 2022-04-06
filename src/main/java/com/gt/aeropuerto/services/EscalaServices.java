@@ -3,12 +3,12 @@ package com.gt.aeropuerto.services;
 import com.gt.aeropuerto.Dtos.EscalasDto;
 import com.gt.aeropuerto.models.EscalasModel;
 import com.gt.aeropuerto.projections.EscalasProjection;
-import com.gt.aeropuerto.repositories.EscalasInterface;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.gt.aeropuerto.repositories.EscalasRepository;
 
 /**
  *
@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class EscalaServices {
 
     @Autowired
-    EscalasInterface escalasInterface;
+    EscalasRepository escalasInterface;
 
     @Transactional(rollbackFor = {Exception.class})
     public Boolean crearEscala(EscalasDto escalas) {

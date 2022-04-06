@@ -4,7 +4,6 @@
  */
 package com.gt.aeropuerto.services;
 
-import com.gt.aeropuerto.Dtos.ActualizarAerolineaDto;
 import com.gt.aeropuerto.Dtos.ActualizarEmpleadoDto;
 import com.gt.aeropuerto.models.EmpleadoModel;
 import com.gt.aeropuerto.repositories.EmpleadoRepository;

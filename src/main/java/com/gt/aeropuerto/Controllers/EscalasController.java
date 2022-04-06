@@ -4,12 +4,8 @@
  */
 package com.gt.aeropuerto.Controllers;
 
-import com.gt.aeropuerto.Dtos.ActualizarAerolineaDto;
 import com.gt.aeropuerto.Dtos.EscalasDto;
-import com.gt.aeropuerto.models.AerolineasModel;
-import com.gt.aeropuerto.projections.AerolineasProjection;
 import com.gt.aeropuerto.projections.EscalasProjection;
-import com.gt.aeropuerto.services.AerolineaServices;
 import com.gt.aeropuerto.services.EscalaServices;
 import java.util.List;
 import javax.validation.Valid;
@@ -59,7 +55,7 @@ public class EscalasController {
         }
     }
 
-     @GetMapping(value = "/escalas/obtener/todas")
+    @GetMapping(value = "/escalas/obtener/todas")
     public List<EscalasProjection> obtenerAllEscalas() {
         return escalaServices.obtnerAllAerolinea();
     }

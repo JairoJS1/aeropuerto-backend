@@ -5,7 +5,6 @@
 package com.gt.aeropuerto.repositories;
 
 import com.gt.aeropuerto.models.EscalasModel;
-import com.gt.aeropuerto.projections.AerolineasProjection;
 import com.gt.aeropuerto.projections.EscalasProjection;
 import java.util.List;
 import org.springframework.data.jpa.repository.Query;
@@ -16,7 +15,7 @@ import org.springframework.data.repository.query.Param;
  *
  * @author JairoJS
  */
-public interface EscalasInterface extends CrudRepository<EscalasModel, Integer> {
+public interface EscalasRepository extends CrudRepository<EscalasModel, Integer> {
 
     @Query(value = "select e.*,  cd.nombre as \"detalleEstadoEscala\" \n"
             + "from public.escalas e\n"
