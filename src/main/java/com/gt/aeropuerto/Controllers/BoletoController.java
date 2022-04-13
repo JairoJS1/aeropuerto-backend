@@ -4,6 +4,13 @@
  */
 package com.gt.aeropuerto.Controllers;
 
+import static com.gt.aeropuerto.Controllers.EscalasController.LOG;
+import com.gt.aeropuerto.Dtos.ActualizarBoletoDto;
+import com.gt.aeropuerto.Dtos.CrearBoletoDto;
+import com.gt.aeropuerto.Dtos.EscalasDto;
+import com.gt.aeropuerto.Dtos.RespuestaBoletoDto;
+import com.gt.aeropuerto.models.BoletoModel;
+import com.gt.aeropuerto.projections.BoletoProjection;
 import com.gt.aeropuerto.services.BoletoServices;
 import java.util.List;
 import javax.validation.Valid;
@@ -25,14 +32,53 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Slf4j
 public class BoletoController {
-    
-    final static Logger LOG = LoggerFactory.getLogger(CatalogoController.class);
+
+    final static Logger LOG = LoggerFactory.getLogger(BoletoController.class);
 
     @Autowired
     BoletoServices boletoServices;
-    
-    @GetMapping("/crear/boleto")
-    public String index() {
-        return "Hola mundo.";
+
+    @PostMapping(value = "/boleto/crear")
+    public RespuestaBoletoDto crearBoleto(@Valid @RequestBody CrearBoletoDto boleto) {
+        log.info("Creando un vuelo");
+
+        return boletoServices.crearBoleto(boleto);
+
+    }
+
+    @PutMapping(value = "/boleto/actualizar/{idBoleto}")
+    public Boolean actualizarBoleto(@Valid @RequestParam Integer idBoleto, @RequestBody ActualizarBoletoDto dto) {
+        log.info("Actulizando una aerolinea");
+        try {
+            return boletoServices.actualizarBoleto(idBoleto, dto);
+        } catch (Exception e) {
+            LOG.error("Error: " + e);
+            return false;
+        }
+    }
+
+    @GetMapping(value = "/boleto/obtener/todo")
+    public List<BoletoProjection> obtenerBoletos() {
+        log.info("consultado...");
+        try {
+            return boletoServices.obtenerBoletos();
+        } catch (Exception e) {
+            log.info("no exiten datos para mostrar", "404");
+            return null;
+        }
+    }
+
+    @GetMapping(value = "/boleto/obtener/{idBoleto}")
+    public BoletoProjection obtenerBoletos(@Valid @RequestParam Integer idBoleto) {
+        log.info("consultado...");
+        BoletoProjection boleto;
+
+        try {
+            return boleto = boletoServices.obtenerBoletoById(idBoleto);
+        } catch (Exception e) {
+            boleto = null;
+            LOG.debug("Error" + e);
+        }
+        return boleto;
     }
 }
