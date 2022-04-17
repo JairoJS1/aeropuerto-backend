@@ -29,7 +29,7 @@ public class CatalogoServices {
 
     @Autowired
     CatCatalogoRepository catCatalogoRepository;
-    
+
     @Autowired
     CatDatoRepository catDatoRepository;
 
@@ -84,9 +84,7 @@ public class CatalogoServices {
     public CatCatalogoModel obtenerCatalogosById(Integer codigo) {
         return catCatalogoRepository.findById(codigo).orElse(null);
     }
-    
-    
-    
+
     /*
     * Servicios para CatDato
      */
@@ -117,6 +115,11 @@ public class CatalogoServices {
 
     public CatDatoModel obtenerDatosById(Integer codigo) {
         return catDatoRepository.findById(codigo).orElse(null);
+    }
+
+    public List<CatDatoModel> getCatalogosPadre(int codigo) {
+        log.info("Obteniendo catalogos desde el servicio");
+        return catDatoRepository.findByCodigoCatalogo(codigo);
     }
 
 }

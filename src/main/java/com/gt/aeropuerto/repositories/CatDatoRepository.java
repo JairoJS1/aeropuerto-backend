@@ -5,7 +5,9 @@
 package com.gt.aeropuerto.repositories;
 
 import com.gt.aeropuerto.models.CatDatoModel;
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 /**
  *
@@ -13,4 +15,5 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface CatDatoRepository extends CrudRepository<CatDatoModel, Integer>{
     
+    public List<CatDatoModel> findByCodigoCatalogo(@Param("codigo") int codigoIngresado);
 }

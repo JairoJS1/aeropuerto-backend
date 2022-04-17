@@ -108,4 +108,10 @@ public class CatalogoController {
 
         return catalogo;
     }
+    
+    @GetMapping(value = "/catalogos/codigo/padre/{codigo}")
+    public List<CatDatoModel> getCatDatos(@PathVariable int codigo) {
+        log.info("Consultando todos los catalogos en base a codigo del padre.");
+        return catEstadoCatalogoServices.getCatalogosPadre(codigo);
+    }
 }
