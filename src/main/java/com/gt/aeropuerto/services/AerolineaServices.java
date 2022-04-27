@@ -37,6 +37,7 @@ public class AerolineaServices {
                             .telefonoAerolinea(aerolineas.getTelefonoAerolinea())
                             .correoAerolinea(aerolineas.getCorreoAerolinea())
                             .direccionAerolinea(aerolineas.getDireccionAerolinea())
+                            .estadoAerolinea(aerolineas.getEstadoAerolinea())
                             .build()
             );
             return true;
@@ -56,6 +57,7 @@ public class AerolineaServices {
             aerolineas.setTelefonoAerolinea(dto.getTelefonoAerolinea());
             aerolineas.setCorreoAerolinea(dto.getCorreoAerolinea());
             aerolineas.setDireccionAerolinea(dto.getDireccionAerolinea());
+            aerolineas.setEstadoAerolinea(dto.getEstadoAerolinea());
             return true;
         } else {
             log.info("No exite la aerolinea indicada");

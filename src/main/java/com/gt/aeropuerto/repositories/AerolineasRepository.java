@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package com.gt.aeropuerto.repositories;
 
 import com.gt.aeropuerto.models.AerolineasModel;
@@ -19,14 +15,15 @@ public interface AerolineasRepository extends CrudRepository<AerolineasModel, In
 
     @Query(value = "select a.*,  cd.nombre as \"detalleAerolinea\" \n"
             + "from public.aerolineas a\n"
-            + "inner join public.cat_dato cd on a.id_aerolinea = cd.codigo",
+            + "inner join public.cat_dato cd on a.id_aerolinea = cd.codigo"
+            + " where a.estado_aerolinea <> 43",
             nativeQuery = true)
     public List<AerolineasProjection> obtenerAllAerolineas();
 
     @Query(value = "select a.*,  cd.nombre as \"detalleAerolinea\" \n"
             + "from public.aerolineas a\n"
             + "inner join public.cat_dato cd on a.id_aerolinea = cd.codigo\n"
-            + "where a.id_aerolinea = :idAerolinea",
+            + "where a.id_aerolinea = :idAerolinea and a.estado_aerolinea <> 43",
             nativeQuery = true)
     public AerolineasProjection obtenerAerolineaById(@Param("idAerolinea") Integer idAerolinea);
 }

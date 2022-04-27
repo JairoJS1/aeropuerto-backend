@@ -121,5 +121,10 @@ public class CatalogoServices {
         log.info("Obteniendo catalogos desde el servicio");
         return catDatoRepository.findByCodigoCatalogo(codigo);
     }
+    
+    public List<CatDatoModel> getCatalogosAerolineas() {
+        log.info("Obteniendo catalogos desde el servicio");
+        return catDatoRepository.obtenerCatalogo();
+    }
 
 }

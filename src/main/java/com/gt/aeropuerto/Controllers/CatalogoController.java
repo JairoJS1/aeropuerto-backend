@@ -114,4 +114,10 @@ public class CatalogoController {
         log.info("Consultando todos los catalogos en base a codigo del padre.");
         return catEstadoCatalogoServices.getCatalogosPadre(codigo);
     }
+    
+    @GetMapping(value = "/catalogos/codigo/padre/aerolinea")
+    public List<CatDatoModel> getCatDatoAerolinea() {
+        log.info("Consultando todos los catalogos en base a codigo del padre.");
+        return catEstadoCatalogoServices.getCatalogosAerolineas();
+    }
 }
