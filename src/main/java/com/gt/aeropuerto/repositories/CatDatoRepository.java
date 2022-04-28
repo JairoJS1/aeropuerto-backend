@@ -21,4 +21,8 @@ public interface CatDatoRepository extends CrudRepository<CatDatoModel, Integer>
     @Query(value = "select * from public.cat_dato where codigo_catalogo = 7 and codigo <> 43",
             nativeQuery = true)
     public List<CatDatoModel> obtenerCatalogo();
+    
+    @Query(value = "select * from public.cat_dato where codigo_catalogo = 1 and codigo <> 44",
+            nativeQuery = true)
+    public List<CatDatoModel> obtenerCatalogoAviones();
 }

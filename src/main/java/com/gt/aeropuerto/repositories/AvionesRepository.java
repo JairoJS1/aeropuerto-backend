@@ -16,7 +16,8 @@ public interface AvionesRepository extends CrudRepository<AvionesModel, String> 
     @Query(value = "select a.*, a2.nombre_aerolinea as \"detalleAerolinea\", cd.nombre as \"detalleEstado\" \n"
             + "from public.aviones a \n"
             + "inner join public.aerolineas a2 on a.aerolinea = a2.id_aerolinea\n"
-            + "inner join public.cat_dato cd on a.estado_avion = cd.codigo",
+            + "inner join public.cat_dato cd on a.estado_avion = cd.codigo "
+            + "where a.estado_avion <> 44",
             nativeQuery = true)
     public List<AvionesProjections> obtenerAllAviones();
 
@@ -24,7 +25,7 @@ public interface AvionesRepository extends CrudRepository<AvionesModel, String> 
             + "from public.aviones a \n"
             + "inner join public.aerolineas a2 on a.aerolinea = a2.id_aerolinea\n"
             + "inner join public.cat_dato cd on a.aerolinea = cd.codigo\n"
-            + "where a.id_avion = :idAvion",
+            + "where a.id_avion = :idAvion and a.estado_avion <> 44",
             nativeQuery = true)
     public AvionesProjections obtenerAvionesById(@Param("idAvion") String idAvion);
 }

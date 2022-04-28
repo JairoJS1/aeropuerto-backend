@@ -127,4 +127,8 @@ public class CatalogoServices {
         return catDatoRepository.obtenerCatalogo();
     }
 
+     public List<CatDatoModel> getCatalogosAviones() {
+        log.info("Obteniendo catalogos desde el servicio");
+        return catDatoRepository.obtenerCatalogoAviones();
+    }
 }
