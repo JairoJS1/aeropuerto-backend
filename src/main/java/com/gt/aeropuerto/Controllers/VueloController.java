@@ -46,7 +46,7 @@ public class VueloController {
         }
     }
 
-    @PutMapping(value = "/vuelol/actualizar/{numeroVuelo}")
+    @PutMapping(value = "/vuelo/actualizar/{numeroVuelo}")
     public Boolean actualizarEscala(@Valid @PathVariable String numeroVuelo, @RequestBody ActualizarVueloDto dto) {
         log.info("Actulizando un vuelo");
         try {
