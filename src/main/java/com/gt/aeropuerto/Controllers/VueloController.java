@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -46,7 +47,7 @@ public class VueloController {
     }
 
     @PutMapping(value = "/vuelol/actualizar/{numeroVuelo}")
-    public Boolean actualizarEscala(@Valid @RequestParam String numeroVuelo, @RequestBody ActualizarVueloDto dto) {
+    public Boolean actualizarEscala(@Valid @PathVariable String numeroVuelo, @RequestBody ActualizarVueloDto dto) {
         log.info("Actulizando un vuelo");
         try {
             return vueloService.actualizarVuelo(numeroVuelo, dto);

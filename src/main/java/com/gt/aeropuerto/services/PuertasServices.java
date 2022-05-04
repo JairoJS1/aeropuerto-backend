@@ -4,7 +4,6 @@
  */
 package com.gt.aeropuerto.services;
 
-import com.gt.aeropuerto.projections.EscalasProjection;
 import com.gt.aeropuerto.projections.PuertasProjection;
 import com.gt.aeropuerto.repositories.PuertasRepository;
 import java.util.List;
