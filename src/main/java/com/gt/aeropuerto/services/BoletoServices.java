@@ -5,9 +5,12 @@ import com.gt.aeropuerto.Dtos.CrearBoletoDto;
 import com.gt.aeropuerto.Dtos.RespuestaBoletoDto;
 import com.gt.aeropuerto.models.BoletoModel;
 import com.gt.aeropuerto.models.PasajeroModel;
+import com.gt.aeropuerto.models.VueloModel;
+import com.gt.aeropuerto.projections.BoletoCrearProjection;
 import com.gt.aeropuerto.projections.BoletoProjection;
 import com.gt.aeropuerto.repositories.BoletoRepository;
 import com.gt.aeropuerto.repositories.PasajeroRepository;
+import com.gt.aeropuerto.repositories.VueloRepository;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +31,9 @@ public class BoletoServices {
 
     @Autowired
     PasajeroRepository pasajeroRepository;
+    
+    @Autowired
+    VueloRepository vueloRepository;
 
     @Transactional(rollbackFor = {Exception.class})
     public RespuestaBoletoDto crearBoleto(CrearBoletoDto crearDto) {
@@ -46,15 +52,22 @@ public class BoletoServices {
                 BoletoModel.builder()
                         .fechaCreacion(crearDto.getFechaCreacion())
                         .numeroAsiento(crearDto.getNumeroAsiento())
-                        .estadoBoleto(crearDto.getEstadoBoleto())
+                        .estadoBoleto(12)
                         .presentacion(false)
                         .idPasajero(pasajero.getIdPasajero())
                         .numeroVuelo(crearDto.getNumeroVuelo())
                         .build()
         );
+        
+        
 
         boleto.setNumeroBoleto("N" + "-" + boleto.getIdBoleto() + "-" + boleto.getNumeroVuelo());
 
+        final VueloModel vuelo = vueloRepository.findById(crearDto.getNumeroVuelo()).orElse(null);
+        if(vuelo != null){
+             log.debug("Entre...");
+            vuelo.setAsientos(crearDto.getAsientos());
+        }
         return new RespuestaBoletoDto(boleto.getNumeroBoleto(), boleto.getIdBoleto());
     }
 
@@ -80,4 +93,7 @@ public class BoletoServices {
         return boletoRepository.obtenerBoletosById(idBoleto);
     }
 
+     public BoletoCrearProjection obteneInfo(Integer idBoleto) {
+        return boletoRepository.obtenerInfo(idBoleto);
+    }
 }

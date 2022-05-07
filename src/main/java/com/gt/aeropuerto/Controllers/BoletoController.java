@@ -4,12 +4,10 @@
  */
 package com.gt.aeropuerto.Controllers;
 
-import static com.gt.aeropuerto.Controllers.EscalasController.LOG;
 import com.gt.aeropuerto.Dtos.ActualizarBoletoDto;
 import com.gt.aeropuerto.Dtos.CrearBoletoDto;
-import com.gt.aeropuerto.Dtos.EscalasDto;
 import com.gt.aeropuerto.Dtos.RespuestaBoletoDto;
-import com.gt.aeropuerto.models.BoletoModel;
+import com.gt.aeropuerto.projections.BoletoCrearProjection;
 import com.gt.aeropuerto.projections.BoletoProjection;
 import com.gt.aeropuerto.services.BoletoServices;
 import java.util.List;
@@ -19,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -75,6 +74,20 @@ public class BoletoController {
 
         try {
             return boleto = boletoServices.obtenerBoletoById(idBoleto);
+        } catch (Exception e) {
+            boleto = null;
+            LOG.debug("Error" + e);
+        }
+        return boleto;
+    }
+    
+     @GetMapping(value = "/boleto/info/{idBoleto}")
+    public BoletoCrearProjection obtenerInfo(@Valid @PathVariable Integer idBoleto) {
+        log.info("consultado...");
+        BoletoCrearProjection boleto;
+
+        try {
+            return boleto = boletoServices.obteneInfo(idBoleto);
         } catch (Exception e) {
             boleto = null;
             LOG.debug("Error" + e);

@@ -63,7 +63,12 @@ public class VueloController {
     }
 
     @GetMapping(value = "/vuelo/obtener/{numeroVuelo}")
-    public VuelosProjection obtenerAllAerolineas(@Valid @RequestParam String numeroVuelo) {
+    public VuelosProjection obtenerAllAerolineas(@Valid @PathVariable String numeroVuelo) {
         return vueloService.obtnerAerolineaById(numeroVuelo);
+    }
+
+    @GetMapping(value = "/vuelo/obtener/origen/destino/{origen}/{destino}")
+    public List<VueloModel> obtenerAllAerolineas(@Valid @PathVariable Integer origen, @PathVariable Integer destino) {
+        return vueloService.obtenerVueloByOrigenAndDestino(origen, destino);
     }
 }

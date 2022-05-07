@@ -27,11 +27,12 @@ public class VueloModel implements java.io.Serializable {
     private String idPuerta;
     private Integer idEscala;
     private Integer estadoVuelo;
+    private String asientos;
 
     public VueloModel() {
     }
 
-    public VueloModel(String numeroVuelo, Date horaLlegada, Date horaSalida, Integer destinoVuelo, Integer origenVuelo, String idAvion, String idPuerta, Integer idEscala, Integer estadoVuelo) {
+    public VueloModel(String numeroVuelo, Date horaLlegada, Date horaSalida, Integer destinoVuelo, Integer origenVuelo, String idAvion, String idPuerta, Integer idEscala, Integer estadoVuelo, String asientos) {
         this.numeroVuelo = numeroVuelo;
         this.horaLlegada = horaLlegada;
         this.horaSalida = horaSalida;
@@ -41,6 +42,7 @@ public class VueloModel implements java.io.Serializable {
         this.idPuerta = idPuerta;
         this.idEscala = idEscala;
         this.estadoVuelo = estadoVuelo;
+        this.asientos = asientos;
     }
 
     @Id
@@ -127,4 +129,14 @@ public class VueloModel implements java.io.Serializable {
         this.estadoVuelo = estadoVuelo;
     }
 
+     @Column(name = "asientos")
+    public String getAsientos() {
+        return asientos;
+    }
+
+    public void setAsientos(String asientos) {
+        this.asientos = asientos;
+    }
+
+    
 }

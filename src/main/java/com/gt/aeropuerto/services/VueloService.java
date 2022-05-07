@@ -79,4 +79,8 @@ public class VueloService {
     public VuelosProjection obtnerAerolineaById(String numeroVuelo) {
         return vueloInterface.obteneVueloById(numeroVuelo);
     }
+    
+    public List<VueloModel> obtenerVueloByOrigenAndDestino(Integer origen, Integer destino){
+        return vueloInterface.obteneVueloByDestinoAndOrigen(origen, destino);
+    }
 }

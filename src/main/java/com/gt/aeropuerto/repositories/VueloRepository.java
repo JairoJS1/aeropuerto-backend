@@ -39,4 +39,10 @@ public interface VueloRepository extends CrudRepository<VueloModel, String> {
             + "where v.numero_vuelo = :numeroVuelo",
             nativeQuery = true)
     public VuelosProjection obteneVueloById(@Param("numeroVuelo") String numeroVuelo);
+
+    @Query(value = "select  *\n"
+            + "from public.vuelo v\n"
+            + "where v.origen = :origen and v.destino = :destino",
+            nativeQuery = true)
+    public List<VueloModel> obteneVueloByDestinoAndOrigen(@Param("origen") Integer origen, @Param("destino") Integer destino);
 }

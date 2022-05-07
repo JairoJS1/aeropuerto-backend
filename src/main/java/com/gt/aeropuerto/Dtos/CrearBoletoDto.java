@@ -29,7 +29,8 @@ public class CrearBoletoDto implements Serializable {
     
     private Date fechaCreacion;
     private String numeroAsiento;
-    private Integer estadoBoleto;
     private String numeroVuelo;
+    
+    private String asientos;
 
 }
