@@ -6,6 +6,7 @@ package com.gt.aeropuerto.Controllers;
 
 import com.gt.aeropuerto.Dtos.ActualizarVueloDto;
 import com.gt.aeropuerto.models.VueloModel;
+import com.gt.aeropuerto.projections.EscogerVueloProjection;
 import com.gt.aeropuerto.projections.VuelosProjection;
 import com.gt.aeropuerto.services.VueloService;
 import java.util.List;
@@ -68,7 +69,12 @@ public class VueloController {
     }
 
     @GetMapping(value = "/vuelo/obtener/origen/destino/{origen}/{destino}")
-    public List<VueloModel> obtenerAllAerolineas(@Valid @PathVariable Integer origen, @PathVariable Integer destino) {
+    public List<EscogerVueloProjection> obtenerAllAerolineas(@Valid @PathVariable Integer origen, @PathVariable Integer destino) {
         return vueloService.obtenerVueloByOrigenAndDestino(origen, destino);
+    }
+    
+     @GetMapping(value = "/vuelo/numeroVuelo/{numeroVuelo}")
+    public VueloModel obtenerVueloById(@Valid @PathVariable String numeroVuelo) {
+        return vueloService.obtenerVueloByID(numeroVuelo);
     }
 }

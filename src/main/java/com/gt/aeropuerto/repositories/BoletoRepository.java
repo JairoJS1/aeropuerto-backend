@@ -7,6 +7,7 @@ package com.gt.aeropuerto.repositories;
 import com.gt.aeropuerto.models.BoletoModel;
 import com.gt.aeropuerto.projections.BoletoCrearProjection;
 import com.gt.aeropuerto.projections.BoletoProjection;
+import com.gt.aeropuerto.projections.BoletoVueloProjection;
 import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -44,4 +45,24 @@ public interface BoletoRepository extends CrudRepository<BoletoModel, Integer> {
             + "where b.id_boleto = :idBoleto",
             nativeQuery = true)
     public BoletoCrearProjection obtenerInfo(@Param("idBoleto") Integer idBoleto);
+
+    @Query(value = "select distinct  \n"
+            + "p.nombre_pasajero \"nombrePasajero\", p.apellido_pasajero \"apellidoPasajero\",\n"
+            + "p.numero_pasaporte \"numeroPasaporte\", b.numero_vuelo \"numeroVuelo\", a2.nombre_aerolinea \"nombreAerolinea\",\n"
+            + "a.aerolinea \"idAerolinea\", cd.nombre \"origen\", cd2.nombre \"destino\", cd2.descripcion \"descDestino\",\n"
+            + "v.hora_salida \"horaDespegue\", v.hora_llegada \"horaAterrizaje\", \n"
+            + "v.estado_vuelo \"idEstadoVuelo\", cd3.nombre \"EstadoVuelo\", b.numero_boleto \"numeroBoleto\",\n"
+            + "v.id_escala \"idEscala\", e.ciudad \"escalaCiudad\", e.pais \"escalaPais\", b.id_boleto  \"idBoleto\" \n"
+            + "from public.pasajero p \n"
+            + "inner join public.boleto b on p.id_pasajero = b.id_pasajero \n"
+            + "inner join public.vuelo v on b.numero_vuelo = v.numero_vuelo \n"
+            + "inner join public.escalas e on v.id_escala = e.id_escala \n"
+            + "inner join public.aviones a on v.id_avion  = a.id_avion \n"
+            + "inner join public.aerolineas a2 on a.aerolinea = a2.id_aerolinea \n"
+            + "inner join public.cat_dato cd on v.origen = cd.codigo \n"
+            + "inner join public.cat_dato cd2 on v.destino = cd2.codigo \n"
+            + "inner join public.cat_dato cd3 on v.estado_vuelo  = cd3.codigo \n"
+            + "where b.numero_boleto = :numeroBoleto and b.estado_boleto <> 13",
+            nativeQuery = true)
+    public BoletoVueloProjection obtenerVueloByBoleto(@Param("numeroBoleto") String numeroBoleto);
 }

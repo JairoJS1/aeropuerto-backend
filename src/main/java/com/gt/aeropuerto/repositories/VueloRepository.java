@@ -5,6 +5,7 @@
 package com.gt.aeropuerto.repositories;
 
 import com.gt.aeropuerto.models.VueloModel;
+import com.gt.aeropuerto.projections.EscogerVueloProjection;
 import com.gt.aeropuerto.projections.VuelosProjection;
 import java.util.List;
 import org.springframework.data.jpa.repository.Query;
@@ -40,9 +41,15 @@ public interface VueloRepository extends CrudRepository<VueloModel, String> {
             nativeQuery = true)
     public VuelosProjection obteneVueloById(@Param("numeroVuelo") String numeroVuelo);
 
-    @Query(value = "select  *\n"
+    @Query(value = "select distinct v.*, cd.nombre \"destinoDescripcion\", cd.descripcion \"destinoDescripcion2\",\n"
+            + "cd2.nombre \"origenDescripcion\", e.pais \"paisEscala\", e.ciudad \"ciudadEscala\", a.aerolinea \"idAerolinea\", a2.nombre_aerolinea \"nombreAerolinea\"\n"
             + "from public.vuelo v\n"
+            + "inner join public.cat_dato cd on v.destino = cd.codigo \n"
+            + "inner join public.cat_dato cd2 on v.origen = cd2.codigo \n"
+            + "inner join public.escalas e on v.id_escala = e.id_escala \n"
+            + "inner join public.aviones a on v.id_avion = a.id_avion \n"
+            + "inner join public.aerolineas a2 on a.aerolinea = a2.id_aerolinea "
             + "where v.origen = :origen and v.destino = :destino",
             nativeQuery = true)
-    public List<VueloModel> obteneVueloByDestinoAndOrigen(@Param("origen") Integer origen, @Param("destino") Integer destino);
+    public List<EscogerVueloProjection> obteneVueloByDestinoAndOrigen(@Param("origen") Integer origen, @Param("destino") Integer destino);
 }

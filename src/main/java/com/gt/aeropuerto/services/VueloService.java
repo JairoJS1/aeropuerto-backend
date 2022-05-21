@@ -6,6 +6,7 @@ package com.gt.aeropuerto.services;
 
 import com.gt.aeropuerto.Dtos.ActualizarVueloDto;
 import com.gt.aeropuerto.models.VueloModel;
+import com.gt.aeropuerto.projections.EscogerVueloProjection;
 import com.gt.aeropuerto.projections.VuelosProjection;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
@@ -80,7 +81,11 @@ public class VueloService {
         return vueloInterface.obteneVueloById(numeroVuelo);
     }
     
-    public List<VueloModel> obtenerVueloByOrigenAndDestino(Integer origen, Integer destino){
+    public List<EscogerVueloProjection> obtenerVueloByOrigenAndDestino(Integer origen, Integer destino){
         return vueloInterface.obteneVueloByDestinoAndOrigen(origen, destino);
+    }
+    
+    public VueloModel obtenerVueloByID(String numeroVuelo){
+        return vueloInterface.findById(numeroVuelo).orElse(null);
     }
 }

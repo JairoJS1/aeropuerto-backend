@@ -8,6 +8,7 @@ import com.gt.aeropuerto.models.PasajeroModel;
 import com.gt.aeropuerto.models.VueloModel;
 import com.gt.aeropuerto.projections.BoletoCrearProjection;
 import com.gt.aeropuerto.projections.BoletoProjection;
+import com.gt.aeropuerto.projections.BoletoVueloProjection;
 import com.gt.aeropuerto.repositories.BoletoRepository;
 import com.gt.aeropuerto.repositories.PasajeroRepository;
 import com.gt.aeropuerto.repositories.VueloRepository;
@@ -96,4 +97,8 @@ public class BoletoServices {
      public BoletoCrearProjection obteneInfo(Integer idBoleto) {
         return boletoRepository.obtenerInfo(idBoleto);
     }
+     
+     public BoletoVueloProjection obtenerVueloByBoleto(String numeroBoleto){
+         return boletoRepository.obtenerVueloByBoleto(numeroBoleto);
+     }
 }

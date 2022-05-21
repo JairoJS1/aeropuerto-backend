@@ -9,6 +9,7 @@ import com.gt.aeropuerto.Dtos.CrearBoletoDto;
 import com.gt.aeropuerto.Dtos.RespuestaBoletoDto;
 import com.gt.aeropuerto.projections.BoletoCrearProjection;
 import com.gt.aeropuerto.projections.BoletoProjection;
+import com.gt.aeropuerto.projections.BoletoVueloProjection;
 import com.gt.aeropuerto.services.BoletoServices;
 import java.util.List;
 import javax.validation.Valid;
@@ -46,7 +47,7 @@ public class BoletoController {
     }
 
     @PutMapping(value = "/boleto/actualizar/{idBoleto}")
-    public Boolean actualizarBoleto(@Valid @RequestParam Integer idBoleto, @RequestBody ActualizarBoletoDto dto) {
+    public Boolean actualizarBoleto(@Valid @PathVariable Integer idBoleto, @RequestBody ActualizarBoletoDto dto) {
         log.info("Actulizando una aerolinea");
         try {
             return boletoServices.actualizarBoleto(idBoleto, dto);
@@ -80,14 +81,28 @@ public class BoletoController {
         }
         return boleto;
     }
-    
-     @GetMapping(value = "/boleto/info/{idBoleto}")
+
+    @GetMapping(value = "/boleto/info/{idBoleto}")
     public BoletoCrearProjection obtenerInfo(@Valid @PathVariable Integer idBoleto) {
         log.info("consultado...");
         BoletoCrearProjection boleto;
 
         try {
             return boleto = boletoServices.obteneInfo(idBoleto);
+        } catch (Exception e) {
+            boleto = null;
+            LOG.debug("Error" + e);
+        }
+        return boleto;
+    }
+
+    @GetMapping(value = "/boleto/info/vuelo/{numeroBoleto}")
+    public BoletoVueloProjection obtenerVueloByBoleto(@Valid @PathVariable String numeroBoleto) {
+        log.info("consultado...");
+        BoletoVueloProjection boleto;
+
+        try {
+            return boleto = boletoServices.obtenerVueloByBoleto(numeroBoleto);
         } catch (Exception e) {
             boleto = null;
             LOG.debug("Error" + e);
