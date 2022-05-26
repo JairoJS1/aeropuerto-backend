@@ -7,7 +7,7 @@ package com.gt.aeropuerto.Controllers;
 import com.gt.aeropuerto.Dtos.ReporteVuelosDto;
 import com.gt.aeropuerto.Dtos.ReporteVuelosRespuestaDto;
 import com.gt.aeropuerto.services.ReporteServices;
-import com.gt.aeropuerto.utils.ReportesUtils;
+//import com.gt.aeropuerto.utils.ReportesUtils;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -28,16 +28,16 @@ public class ReportesController {
     @Autowired
     ReporteServices reportesServices;
     
-    @PostMapping(value = "/reporte/servicios/{exportFormat}")
-    public List<ReporteVuelosRespuestaDto> reporteServicios(@RequestBody ReporteVuelosDto parametros,
-            HttpServletResponse response,
-            @PathVariable String exportFormat) {
-
-        final List<ReporteVuelosRespuestaDto> resultado = reportesServices.obtenerReporteServicios(parametros);
-
-        if (!exportFormat.equals("info")) {
-            ReportesUtils.crearReporte(resultado, "reporte-vuelos.jrxml", response, exportFormat);
-        }
-        return resultado;
-    }
+//    @PostMapping(value = "/reporte/servicios/{exportFormat}")
+//    public List<ReporteVuelosRespuestaDto> reporteServicios(@RequestBody ReporteVuelosDto parametros,
+//            HttpServletResponse response,
+//            @PathVariable String exportFormat) {
+//
+//        final List<ReporteVuelosRespuestaDto> resultado = reportesServices.obtenerReporteServicios(parametros);
+//
+//        if (!exportFormat.equals("info")) {
+//           // ReportesUtils.crearReporte(resultado, "reporte-vuelos.jrxml", response, exportFormat);
+//        }
+//        return resultado;
+//    }
 }
