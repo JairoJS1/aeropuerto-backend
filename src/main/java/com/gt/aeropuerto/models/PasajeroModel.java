@@ -69,6 +69,10 @@ public class PasajeroModel implements java.io.Serializable{
     public void setApellidoPasajero(String apellidoPasajero) {
         this.apellidoPasajero = apellidoPasajero;
     }
+
+    public PasajeroModel orElse(Object object) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }

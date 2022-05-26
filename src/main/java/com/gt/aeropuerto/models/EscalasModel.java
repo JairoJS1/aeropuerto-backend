@@ -18,17 +18,15 @@ import lombok.Builder;
 public class EscalasModel implements java.io.Serializable {
 
     private Integer idEscala;
-    private String nombreEscala;
-    private Integer paisEscala;
+    private String paisEscala;
     private String ciudadEscala;
     private Integer estadoEscalas;
 
     public EscalasModel() {
     }
 
-    public EscalasModel(Integer idEscala, String nombreEscala, Integer paisEscala, String ciudadEscala, Integer estadoEscalas) {
+    public EscalasModel(Integer idEscala, String paisEscala, String ciudadEscala, Integer estadoEscalas) {
         this.idEscala = idEscala;
-        this.nombreEscala = nombreEscala;
         this.paisEscala = paisEscala;
         this.ciudadEscala = ciudadEscala;
         this.estadoEscalas = estadoEscalas;
@@ -45,25 +43,16 @@ public class EscalasModel implements java.io.Serializable {
         this.idEscala = idEscala;
     }
 
-    @Column(name = "nombre", nullable = false)
-    public String getNombreEscala() {
-        return nombreEscala;
-    }
-
-    public void setNombreEscala(String nombreEscala) {
-        this.nombreEscala = nombreEscala;
-    }
-
     @Column(name = "pais", nullable = false)
-    public Integer getPaisEscala() {
+    public String getPaisEscala() {
         return paisEscala;
     }
 
-    public void setPaisEscala(Integer paisEscala) {
+    public void setPaisEscala(String paisEscala) {
         this.paisEscala = paisEscala;
     }
 
-    @Column(name = "cidudad", nullable = false)
+    @Column(name = "ciudad", nullable = false)
     public String getCiudadEscala() {
         return ciudadEscala;
     }

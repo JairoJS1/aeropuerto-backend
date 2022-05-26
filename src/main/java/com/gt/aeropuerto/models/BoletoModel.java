@@ -1,14 +1,16 @@
-
 package com.gt.aeropuerto.models;
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import lombok.Builder;
+
 /**
  *
  * @author JairoJS
@@ -16,8 +18,9 @@ import lombok.Builder;
 @Entity
 @Builder
 @Table(name = "boleto", schema = "public")
-public class BoletoModel implements java.io.Serializable{
-    
+public class BoletoModel implements java.io.Serializable {
+
+    private Integer idBoleto;
     private String numeroBoleto;
     private Date fechaCreacion;
     private String numeroAsiento;
@@ -29,7 +32,8 @@ public class BoletoModel implements java.io.Serializable{
     public BoletoModel() {
     }
 
-    public BoletoModel(String numeroBoleto, Date fechaCreacion, String numeroAsiento, Integer estadoBoleto, Boolean presentacion, Integer idPasajero, String numeroVuelo) {
+    public BoletoModel(Integer idBoleto, String numeroBoleto, Date fechaCreacion, String numeroAsiento, Integer estadoBoleto, Boolean presentacion, Integer idPasajero, String numeroVuelo) {
+        this.idBoleto = idBoleto;
         this.numeroBoleto = numeroBoleto;
         this.fechaCreacion = fechaCreacion;
         this.numeroAsiento = numeroAsiento;
@@ -40,7 +44,17 @@ public class BoletoModel implements java.io.Serializable{
     }
 
     @Id
-    @Column(name = "numero_boleto",  unique = true, nullable = false)
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "id_boleto", unique = true, nullable = false)
+    public Integer getIdBoleto() {
+        return idBoleto;
+    }
+
+    public void setIdBoleto(Integer idBoleto) {
+        this.idBoleto = idBoleto;
+    }
+
+    @Column(name = "numero_boleto")
     public String getNumeroBoleto() {
         return numeroBoleto;
     }
@@ -103,7 +117,5 @@ public class BoletoModel implements java.io.Serializable{
     public void setNumeroVuelo(String numeroVuelo) {
         this.numeroVuelo = numeroVuelo;
     }
-    
-    
-    
+
 }
