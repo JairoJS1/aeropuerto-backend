@@ -25,18 +25,18 @@ public class ReporteServices {
     
     final static Logger LOG = LoggerFactory.getLogger(ReporteServices.class);
     
-     public List<ReporteVuelosRespuestaDto> obtenerReporteServicios(ReporteVuelosDto parametros) {
-        try {
-            List<ReporteVuelosRespuestaDto> resultado = this.generalRepository.obtenerReporteServicios(parametros);
-
-            if (resultado.isEmpty()) {
-                return null;
-            } else {
-                return resultado;
-            }
-        } catch (Exception e) {
-            LOG.error("Error en obtenerReporteEventos: ", e);
-            return null;
-        }
-    }
+//     public List<ReporteVuelosRespuestaDto> obtenerReporteServicios(ReporteVuelosDto parametros) {
+//        try {
+//            List<ReporteVuelosRespuestaDto> resultado = this.generalRepository.obtenerReporteServicios(parametros);
+//
+//            if (resultado.isEmpty()) {
+//                return null;
+//            } else {
+//                return resultado;
+//            }
+//        } catch (Exception e) {
+//            LOG.error("Error en obtenerReporteEventos: ", e);
+//            return null;
+//        }
+//    }
 }
